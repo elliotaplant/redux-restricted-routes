@@ -1,22 +1,29 @@
 import * as React from 'react';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Link,
+  Redirect,
+  Route,
+  withRouter
+} from 'react-router-dom';
+import { Admin, Protected, Public } from './components/pages';
 
-import logo from './logo.svg';
-
-class App extends React.Component {
-  public render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
+export default function AuthExample () {
+  return (
+    <Router>
+      <div>
+        <LogOutButton />
+        <ul>
+          <li><Link to="/public">Public Page</Link></li>
+          <li><Link to="/login">Login Page</Link></li>
+          <li><Link to="/protected">Protected Page</Link></li>
+          <li><Link to="/admin">Admin Page</Link></li>
+        </ul>
+        <Route path="/public" component={Public}/>
+        <Route path="/login" component={Login}/>
+        <PrivateRoute path='/protected' component={Protected} />
+        <AdminRoute path='/admin' component={Admin} />
       </div>
-    );
-  }
+    </Router>
+  );
 }
-
-export default App;
