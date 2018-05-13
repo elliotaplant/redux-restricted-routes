@@ -7,6 +7,7 @@ import {
   withRouter
 } from 'react-router-dom';
 import { Admin, Protected, Public } from './components/pages';
+import Login from './components/pages/Login';
 
 export default function AuthExample () {
   return (
